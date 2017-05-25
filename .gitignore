@@ -1,4 +1,4 @@
-
+*.db
 *.gem
 *.rbc
 /.config
