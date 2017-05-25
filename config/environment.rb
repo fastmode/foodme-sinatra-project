@@ -1,0 +1,28 @@
+ENV['SINATRA_ENV'] ||= "development"
+
+require 'bundler/setup'
+Bundler.require(:default, ENV['SINATRA_ENV'])
+
+configure :developmet do
+	ActiveRecord::Base.establish_connection(
+	  :adapter => "sqlite3",
+	  :database => "db/#{ENV['SINATRA_ENV']}.sqlite"
+	)
+end
+
+configure :production do
+  db =  URI.parse(ENV['DATABASE_URL'] || 'postgres_database_url')
+#  db =  'postgres://localhost/topofthemorning_development'
+
+  ActiveRecord::Base.establish_connection(
+    :adapter  => db.scheme == 'postgres' ? 'postgresql' : db.scheme,
+    :host     => db.host,
+    :username => db.user,
+    :password => db.password,
+    :database => db.path[1..-1],
+    :encoding => 'UTF8'
+
+  )
+end
+
+require_all 'app'
