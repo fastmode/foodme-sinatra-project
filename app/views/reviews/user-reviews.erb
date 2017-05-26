@@ -5,6 +5,7 @@
 <h1> Your FoodMe Reviews </h1><br>
 
 <% @user.dishes.each do |dish| %>
+<div>
 	<h4><%= dish.name %></h4>
 	<h5>
 		<%= dish.restaurant.name %> | <%= dish.restaurant.city.name %> | $<%= dish.price %>
@@ -19,7 +20,10 @@
 		<% if review.user_id == @user.id %>
 			<p><%= review.content %></p>
 		<% end %>
-	<% end %><br>
+		<p>updated on <%= review.updated_at.strftime("%_m/%_d/%Y") %> by <%= review.user.username %></p>
+	<% end %>
+
+</div>
 <% end %>
 
 
