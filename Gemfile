@@ -13,6 +13,7 @@ gem 'pry', :group => 'development'
 gem 'bcrypt'
 gem "tux"
 gem 'puma'
+gem 'rack-flash3'
 
 group :development do
   gem 'sqlite3'
