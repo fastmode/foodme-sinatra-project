@@ -1,3 +1,8 @@
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
+
+
 <h1>FoodMe Login</h1>
 <form action="/login" method="POST">
   <input class="btn btn-default" type="text" name="username" placeholder="Username:">

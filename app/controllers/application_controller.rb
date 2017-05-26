@@ -1,7 +1,9 @@
+require 'rack-flash'
 require './config/environment'
-rack 'rack-flash'
+
 
 class ApplicationController < Sinatra::Base
+	use Rack::Flash
 
   configure do
     set :public_folder, 'public'
@@ -15,14 +17,20 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/login' do
-  	erb: login
+  	if logged_in?
+  		redirect to '/your'
+  	else
+  		flash[:message] = "Please log in."
+  		erb :'users/login'
+  	end
   end
 
   post '/login' do
   	user = User.find_by(username: params[:username])
   	if user && user.authenticate(params[:password])
   		session[:user_id] = user.id
-  		redirect to '/tweets'
+  		binding.pry
+  		erb :'your'
   	else
   		redirect to '/signup'
   	end
@@ -36,5 +44,6 @@ class ApplicationController < Sinatra::Base
   	def current_user
   		User.find(session[:user_id])
   	end
+  end
 
 end
