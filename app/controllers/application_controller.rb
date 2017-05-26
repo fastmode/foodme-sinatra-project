@@ -20,7 +20,6 @@ class ApplicationController < Sinatra::Base
   	if logged_in?
   		redirect to '/your-food'
   	else
-  		flash[:message] = "Please log in."
   		erb :'users/login'
   	end
   end
@@ -29,7 +28,6 @@ class ApplicationController < Sinatra::Base
   	user = User.find_by(username: params[:username])
   	if user && user.authenticate(params[:password])
   		session[:user_id] = user.id
-  		binding.pry
   		redirect to '/your-food'
   	else
   		redirect to '/signup'
@@ -69,7 +67,8 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/your-food' do
-  	erb :'your-food'
+  	@user = current_user
+  	erb :'reviews/your-food'
   end
 
   helpers do
