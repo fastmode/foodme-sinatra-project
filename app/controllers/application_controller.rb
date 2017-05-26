@@ -67,6 +67,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/reviews' do
+  	@users = User.all
   	erb :'reviews/index'
   end
 

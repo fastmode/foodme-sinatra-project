@@ -1,2 +1,28 @@
 <h1>FoodMe Reviews </h1><br>
 
+<% @users.each do |user| %>
+	<% user.dishes.each do |dish| %>
+	<div>
+		<h4><%= dish.name %></h4>
+		<h5>
+			<%= dish.restaurant.name %> | <%= dish.restaurant.city.name %> | $<%= dish.price %>
+			<% if dish.vegetarian == true %>
+				<%= " | V " %>
+			<% end %>
+			<% if dish.gluten_free == true %>
+				<%= " | G " %>
+			<% end %>
+		</h5>
+		<% dish.reviews.each do |review| %>
+			<% if review.user_id == user.id %>
+				<p><%= review.content %></p>
+			<% end %>
+			<p>updated on <%= review.updated_at.strftime("%_m/%_d/%Y") %> by <%= review.user.username %></p>
+		<% end %>
+
+	</div>
+	<% end %>
+<% end %>
+
+<br><br>
+<p><a href="/logout">Log Out</a></p>
