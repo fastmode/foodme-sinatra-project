@@ -30,9 +30,20 @@ class ApplicationController < Sinatra::Base
   	if user && user.authenticate(params[:password])
   		session[:user_id] = user.id
   		binding.pry
-  		erb :'your'
+  		redirect to '/your-food'
   	else
   		redirect to '/signup'
+  	end
+  end
+
+  get '/logout' do
+  	if logged_in?
+  		session.clear
+  		flash[:message] = "Please log in."
+  		redirect to '/'
+  	else
+  		flash[:message] = "Please sign up or log in."
+  		redirect to '/'
   	end
   end
 
