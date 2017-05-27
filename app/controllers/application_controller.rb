@@ -71,6 +71,18 @@ class ApplicationController < Sinatra::Base
   	erb :'reviews/index'
   end
 
+  get '/reviews/new' do
+    if logged_in?
+      erb :'reviews/new-review'
+    else
+      redirect to '/login'
+    end
+  end
+
+  post '/reviews' do
+    binding.pry
+  end
+
   get '/:slug' do
     @user = User.find_by_slug(params[:slug])
     erb :'reviews/user-reviews'
