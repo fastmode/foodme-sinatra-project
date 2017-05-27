@@ -1,1 +1,13 @@
-show-review.erb
+<h4><%= @review.dish.name %></h4>
+<h5>
+	<%= @review.dish.restaurant.name %> | <%= @review.dish.restaurant.city.name %> | <%= @review.dish.price %>
+	<% if @review.dish.vegetarian == true %>
+			<%= " | V " %>
+		<% end %>
+		<% if @review.dish.gluten_free == true %>
+			<%= " | G " %>
+	<% end %>
+</h5>
+<p><%= @review.content %></p>
+<p>updated on <%= @review.updated_at.strftime("%_m/%_d/%Y") %> by <%= @review.user.username %></p>
+

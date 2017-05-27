@@ -71,10 +71,17 @@ class ApplicationController < Sinatra::Base
   	erb :'reviews/index'
   end
 
+  get '/reviews/:id' do
+    @review = Review.find_by_id(params[:id])
+    erb :'reviews/show-review'
+  end
+
   get '/reviews/:slug' do
   	@user = User.find_by_slug(params[:slug])
   	erb :'reviews/user-reviews'
   end
+
+
 
   helpers do
   	def logged_in?
