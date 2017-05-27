@@ -18,7 +18,7 @@ class ApplicationController < Sinatra::Base
 
   get '/login' do
   	if logged_in?
-  		redirect to "/reviews/#{current_user.username}"
+  		redirect to "/#{current_user.username}"
   	else
   		erb :'users/login'
   	end
@@ -28,7 +28,7 @@ class ApplicationController < Sinatra::Base
   	user = User.find_by(username: params[:username])
   	if user && user.authenticate(params[:password])
   		session[:user_id] = user.id
-  		redirect to "/reviews/#{current_user.username}"
+  		redirect to "/#{current_user.username}"
   	else
   		redirect to '/signup'
   	end
@@ -36,7 +36,7 @@ class ApplicationController < Sinatra::Base
 
    get '/signup' do
   	if logged_in?
-  		redirect to "/reviews/#{current_user.username}"
+  		redirect to "/#{current_user.username}"
   	else
   		erb :'users/signup'
   	end
@@ -51,7 +51,7 @@ class ApplicationController < Sinatra::Base
     	user.save
     	session[:user_id] = user.id
     	flash[:message] = "Your account was successfully created! Woot!"
-  		redirect to "/reviews/#{current_user.username}"
+  		redirect to "/#{current_user.username}"
   	end
   end
 
@@ -71,15 +71,17 @@ class ApplicationController < Sinatra::Base
   	erb :'reviews/index'
   end
 
+  get '/:slug' do
+    @user = User.find_by_slug(params[:slug])
+    erb :'reviews/user-reviews'
+  end
+
   get '/reviews/:id' do
     @review = Review.find_by_id(params[:id])
     erb :'reviews/show-review'
   end
 
-  get '/reviews/:slug' do
-  	@user = User.find_by_slug(params[:slug])
-  	erb :'reviews/user-reviews'
-  end
+
 
 
 
