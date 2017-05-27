@@ -80,7 +80,18 @@ class ApplicationController < Sinatra::Base
   end
 
   post '/reviews' do
-    binding.pry
+    city = City.find_or_create_by(name: params[:city])
+    restaurant = Restaurant.find_or_create_by(name: params[:restaurant]) do |r|
+      r.city_id = city.id
+    end
+    dish = Dish.find_or_create_by(name: params[:dish][:name]) do |d|
+      d.price = params[:dish][:price]
+      d.vegetarian = params[:dish][:vegetarian]
+      d.gluten_free = params[:dish][:gluten_free]
+      d.restaurant_id = restaurant.id
+    end
+    @review = Review.create(content: params[:content], dish_id: dish.id, user_id: current_user.id)
+    redirect to '/reviews'
   end
 
   get '/:slug' do
@@ -91,6 +102,10 @@ class ApplicationController < Sinatra::Base
   get '/reviews/:id' do
     @review = Review.find_by_id(params[:id])
     erb :'reviews/show-review'
+  end
+
+  patch '/reviews/:id' do
+
   end
 
 
