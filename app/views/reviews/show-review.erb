@@ -12,7 +12,7 @@
 <p>updated on <%= @review.updated_at.strftime("%_m/%_d/%Y") %> by <%= @review.user.username %></p>
 
 <% if logged_in?  && current_user.username == @review.user.username %>
-	<form method="post" action="/reviews/<%=@review.id%>/edit">
+	<form method="get" action="/reviews/<%=@review.id%>/edit">
 	  <input type="submit" value="Edit">
 	</form>
 

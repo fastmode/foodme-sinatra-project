@@ -1,7 +1,23 @@
-<h1> <%= @song.name %> </h1>
+<h3><%= @review.dish.name %></h3>
 
-<a href="/artists/<%= @song.artist.slug %>"> <%= @song.artist.name %> </a>
+<form method="post" action="/reviews/<%=@review.id%>" id="review_form">
+  <input id="hidden" type="hidden" name="_method" value="PATCH">
+  Dish Name: <input type="text" name="dish[name]" value="<%= @review.dish.name %>"><br>
+  Price: <input type="number" name="dish[price]" value="<%= @review.dish.price%>"><br>
+  Vegetarian?
+  <input type="hidden" value="0" name="dish[vegetarian]">
+  <input type="checkbox" value="1" name="dish[vegetarian]" <% if @review.dish.vegetarian == true %> checked <% end %>>
+  Gluten-Free?
+  <input type="hidden" value="0" name="dish[gluten_free]">
+  <input type="checkbox" value="1" name="dish[gluten_free]" <% if @review.dish.gluten_free == true %> checked <% end %>><br>
 
-<% @song.genres.each do |genre| %>
-  <a href="/genres/<%= genre.slug %>"><%= genre.name %> </a>
-<% end %>
+  Review:<br>
+  <textarea rows="4" cols="50" name="content" form="review_form"><%= @review.content %></textarea><br>
+
+  Restaurant Name: 
+  <input type="text" name="restaurant" value="<%= @review.dish.restaurant.name %>"><br>
+
+  Restaurant City:
+  <input type="text" name="city" value="<%= @review.dish.restaurant.city.name %>"><br>
+  <input type="submit" value="submit">
+</form>
