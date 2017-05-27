@@ -133,6 +133,20 @@ class ApplicationController < Sinatra::Base
     redirect to "/reviews/#{@review.id}"
   end
 
+  delete '/reviews/:id/delete' do
+    if logged_in?
+      @review = Review.find_by_id(params[:id])
+      if @review.user_id == current_user.id
+        @review.delete
+        redirect to "/#{current_user.username}"
+      else
+        redirect to '/reviews'
+      end
+    else
+      redirect to '/login'
+    end
+  end
+
 
   helpers do
   	def logged_in?
