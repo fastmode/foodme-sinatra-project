@@ -1,24 +1,25 @@
-<h1>New FoodMe Review</h1>
+<h3>New FoodMe Review</h3>
 
 <% if flash.has?(:message) %>
   <br><%= flash[:message] %><br><br>
 <% end %>
 
 <form action="/reviews" method="POST" id="review_form">
-  <input class="btn btn-default" type="text" name="dish[name]" placeholder="Dish Name"><br>
-  <input class="btn btn-default" width="50" name="dish[price]" placeholder="Dish Price" min="0.00" max="200.00" step="0.01"><br>
+  <input type="text" name="dish[name]" placeholder="Dish Name"><br><br>
+  <input name="dish[price]" placeholder="Dish Price" min="0.00" max="200.00" step="0.01"><br><br>
+  <input type="text" name="restaurant" placeholder="Restaurant Name"><br><br>
+  <input type="text" name="city" placeholder="Restaurant City"><br><br>
   
-  Vegetarian? 
-  <input class="btn btn-default" type="hidden" value="0" name="dish[vegetarian]">
-  <input class="btn btn-default" type="checkbox" value="1" name="dish[vegetarian]">
+  Vegetarian: 
+  <input type="hidden" value="0" name="dish[vegetarian]">
+  <input type="checkbox" value="1" name="dish[vegetarian]"><br>
 
-  Gluten-Free?
-  <input class="btn btn-default" type="hidden" value="0" name="dish[gluten_free]">
-  <input class="btn btn-default" type="checkbox" value="1" name="dish[gluten_free]"><br>
+  Gluten-Free:
+  <input type="hidden" value="0" name="dish[gluten_free]">
+  <input type="checkbox" value="1" name="dish[gluten_free]"><br><br>
 
-  <textarea class="btn btn-default" rows="4" cols="50" name="content" form="review_form"></textarea><br>
-  <input class="btn btn-default" type="text" name="restaurant" placeholder="Restaurant Name"><br>
-  <input class="btn btn-default" type="text" name="city" placeholder="Restaurant City"><br>
+  <p>Review:<br><textarea rows="7" cols="50" name="content" form="review_form"></textarea><br><p>
+ 
   <input class="btn btn-primary" type="submit" value="submit">
 </form>
 
