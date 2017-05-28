@@ -2,7 +2,7 @@
   <%= flash[:message] %>
 <% end %>
 
-<h1> Your FoodMe Reviews </h1>
+<h2>FoodMe Reviews </h2>
 
 <% @reviews.each do |review| %>
 	<% if review.user.username == params[:slug] %>

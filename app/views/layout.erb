@@ -16,6 +16,21 @@
   </head>
 
   <body>
+    <% if logged_in? %>
+      <h1> Hello, <%= current_user.username %></h1>
+      <h5>
+        <a href="/<%= current_user.username %>">Your Reviews</a>
+        <a href="/reviews">All Reviews</a>
+        <a href="/reviews/new">New Review</a>
+        <a href="/logout">Log Out</a>
+      </h5>
+    <% else %>
+      <h1>Welcome to FoodMe Reviews</h1>
+      <h5>
+        <a href="/login">Login</a>
+        <a href="/signup">Signup</a>
+      </h5>
+    <% end %>
     <%= yield %>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
