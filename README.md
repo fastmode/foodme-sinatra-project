@@ -1,4 +1,4 @@
-# foodme-sinatra-project
+# FoodMe - Review the Food You Eat!
 A food review application built on Sinatra
 
 This application allows you keep track of all the dishes you eat out at restuaurants.  Unlike many other food review sites, this application focuses primarily on the actual dish you eat.  Users can easily share their individual page containing all their dish reviews.  No more having to find a restaurant, then dig through the reviews to find feedback on the dish you are interested in. 
