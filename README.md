@@ -31,4 +31,5 @@ shotgun
 ## Contributing
 Bug reports and pull requests are welcome on GitHub at https://github.com/fastmode/foodme-sinatra-project. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org/version/1/0/0/) code of conduct.
 
-
+## License
+This application is available as open source under the terms of the [MIT License](https://github.com/fastmode/foodme-sinatra-project/blob/master/LICENSE).
