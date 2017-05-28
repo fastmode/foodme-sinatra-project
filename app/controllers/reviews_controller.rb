@@ -14,8 +14,9 @@ class ReviewsController < ApplicationController
   end
 
   post '/reviews' do
-    if params[:dish][:name] == "" || params[:dish][:price] = "" || params[:content] == "" || params[:restaurant] == "" || params[:city] == ""
+    if params[:dish][:name] == "" || params[:content] == "" || params[:restaurant] == "" || params[:city] == ""
       flash[:message] = "* Please fill out every field."
+      binding.pry
       redirect to '/reviews/new'
     else
       city = City.find_or_create_by(name: params[:city])
