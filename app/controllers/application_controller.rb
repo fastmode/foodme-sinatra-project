@@ -67,7 +67,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/reviews' do
-  	@users = User.all
+    @reviews = Review.all
   	erb :'reviews/index'
   end
 
@@ -96,6 +96,7 @@ class ApplicationController < Sinatra::Base
 
   get '/:slug' do
     @user = User.find_by_slug(params[:slug])
+    @reviews = Review.all
     erb :'reviews/user-reviews'
   end
 
