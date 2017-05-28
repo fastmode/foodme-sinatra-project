@@ -14,18 +14,23 @@ class ReviewsController < ApplicationController
   end
 
   post '/reviews' do
-    city = City.find_or_create_by(name: params[:city])
-    restaurant = Restaurant.find_or_create_by(name: params[:restaurant]) do |r|
-      r.city_id = city.id
+    if params[:dish][:name] == "" || params[:dish][:price] = "" || params[:content] == "" || params[:restaurant] == "" || params[:city] == ""
+      flash[:message] = "* Please fill out every field."
+      redirect to '/reviews/new'
+    else
+      city = City.find_or_create_by(name: params[:city])
+      restaurant = Restaurant.find_or_create_by(name: params[:restaurant]) do |r|
+        r.city_id = city.id
+      end
+      dish = Dish.find_or_create_by(name: params[:dish][:name]) do |d|
+        d.price = params[:dish][:price]
+        d.vegetarian = params[:dish][:vegetarian]
+        d.gluten_free = params[:dish][:gluten_free]
+        d.restaurant_id = restaurant.id
+      end
+      @review = Review.create(content: params[:content], dish_id: dish.id, user_id: current_user.id)
+      redirect to '/reviews'
     end
-    dish = Dish.find_or_create_by(name: params[:dish][:name]) do |d|
-      d.price = params[:dish][:price]
-      d.vegetarian = params[:dish][:vegetarian]
-      d.gluten_free = params[:dish][:gluten_free]
-      d.restaurant_id = restaurant.id
-    end
-    @review = Review.create(content: params[:content], dish_id: dish.id, user_id: current_user.id)
-    redirect to '/reviews'
   end
 
   get '/:slug' do

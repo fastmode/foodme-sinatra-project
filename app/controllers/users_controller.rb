@@ -28,7 +28,7 @@ class UsersController < ApplicationController
 
   post '/signup' do
   	if params[:username] == "" || params[:email] == "" || params[:password] == ""
-  		flash[:message] = "Please fill out every field."
+  		flash[:message] = "* Please fill out every field."
       redirect to '/signup'
     else
     	user = User.new(:username => params[:username], :email => params[:email], :password => params[:password])
@@ -42,10 +42,10 @@ class UsersController < ApplicationController
   get '/logout' do
   	if logged_in?
   		session.clear
-  		flash[:message] = "Your are now logged out.  Thank you!"
+  		flash[:message] = "* Your are now logged out.  Thank you!"
   		redirect to '/'
   	else
-  		flash[:message] = "Please sign up or log in."
+  		flash[:message] = "* Please sign up or log in."
   		redirect to '/'
   	end
   end

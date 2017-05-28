@@ -1,5 +1,8 @@
 <h1>New FoodMe Review</h1>
 
+<% if flash.has?(:message) %>
+  <br><%= flash[:message] %><br><br>
+<% end %>
 
 <form action="/reviews" method="POST" id="review_form">
   <input class="btn btn-default" type="text" name="dish[name]" placeholder="Dish Name"><br>
