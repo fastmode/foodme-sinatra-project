@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   get '/login' do
   	if logged_in?
-  		redirect to "/#{current_user.username}"
+  		redirect to "/reviews"
   	else
   		erb :'users/login'
   	end
@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   	user = User.find_by(username: params[:username])
   	if user && user.authenticate(params[:password])
   		session[:user_id] = user.id
-  		redirect to "/#{current_user.username}"
+  		redirect to "/reviews"
   	else
   		redirect to '/signup'
   	end
@@ -20,7 +20,7 @@ class UsersController < ApplicationController
 
    get '/signup' do
   	if logged_in?
-  		redirect to "/#{current_user.username}"
+  		redirect to "/reviews"
   	else
   		erb :'users/signup'
   	end
@@ -35,7 +35,7 @@ class UsersController < ApplicationController
     	user.save
     	session[:user_id] = user.id
     	flash[:message] = "Your account was successfully created! Woot!"
-  		redirect to "/#{current_user.username}"
+  		redirect to "/reviews"
   	end
   end
 
