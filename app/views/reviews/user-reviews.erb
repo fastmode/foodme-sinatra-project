@@ -11,7 +11,7 @@
 	<h5>
 		<%= review.dish.restaurant.name %> | 
 		<%= review.dish.restaurant.city.name %> | 
-		$<%= review.dish.price %>
+		$<%= sprintf("%0.02f", review.dish.price) %>
 		<% if review.dish.vegetarian == true %>
 				<%= " | V " %>
 			<% end %>

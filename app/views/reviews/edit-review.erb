@@ -3,7 +3,7 @@
 <form method="post" action="/reviews/<%=@review.id%>" id="review_form">
   <input id="hidden" type="hidden" name="_method" value="PATCH">
   <p>Dish Name: <br><input type="text" name="dish[name]" value="<%= @review.dish.name %>"><br><p>
-  <p>Price: <br><input type="number" name="dish[price]" value="<%= @review.dish.price%>"><br></p>
+  <p>Price: <br><input type="number" name="dish[price]" value="<%= sprintf("%0.02f", @review.dish.price) %>"><br></p>
 
   <p>Restaurant Name: <br>
   <input type="text" name="restaurant" value="<%= @review.dish.restaurant.name %>"><br></p>
