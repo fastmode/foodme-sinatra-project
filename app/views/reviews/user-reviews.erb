@@ -6,6 +6,7 @@
 
 <% @reviews.each do |review| %>
 	<% if review.user.username == params[:slug] %>
+	<div class="jumbotron">
 	<h4><a href="/reviews/<%= review.id %>"><%= review.dish.name %></a></h4>
 	<h5>
 		<%= review.dish.restaurant.name %> | 
@@ -23,6 +24,7 @@
 		updated on <%= review.updated_at.strftime("%_m/%_d/%Y") %> 
 		by <a href="/<%= review.user.username %>"><%= review.user.username %></a>
 	</p>
-
+	</div>
 	<% end %>
+
 <% end %>

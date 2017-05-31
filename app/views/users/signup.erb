@@ -5,9 +5,11 @@
 
 <h3>Please create an account:</h3>
 
-<form action="/signup" method="POST">
-  <input type="text" name="username" placeholder="Username:"><br><br>
-  <input type="text" name="email" placeholder="Email:"><br><br>
-  <input type="password" name="password" placeholder="Password:"><br><br>
-  <input class="btn btn-primary btn-sm" type="submit" value="Log In">
-</form>
+<div class="form-group">
+	<form action="/signup" method="POST">
+	  <input type="text" name="username" class="form-control" placeholder="Username:"><br>
+	  <input type="email" name="email" class="form-control" placeholder="Email:"><br>
+	  <input type="password" name="password" class="form-control" placeholder="Password:"><br>
+	  <input class="btn btn-primary btn-sm" type="submit" value="Log In">
+	</form>
+</div>

@@ -1,23 +1,24 @@
 <h2>All FoodMe Reviews </h2>
 
 <% @reviews.each do |review| %>
-	<h4><a href="/reviews/<%= review.id %>"><%= review.dish.name %></a></h4>
-	<h5>
-		<%= review.dish.restaurant.name %> | 
-		<%= review.dish.restaurant.city.name %> | 
-		$<%= review.dish.price %>
-		<% if review.dish.vegetarian == true %>
-				<%= " | V " %>
+	<div class="jumbotron">
+		<h4><a href="/reviews/<%= review.id %>"><%= review.dish.name %></a></h4>
+		<h5>
+			<%= review.dish.restaurant.name %> | 
+			<%= review.dish.restaurant.city.name %> | 
+			$<%= review.dish.price %>
+			<% if review.dish.vegetarian == true %>
+					<%= " | V " %>
+				<% end %>
+			<% if review.dish.gluten_free == true %>
+					<%= " | GF " %>
 			<% end %>
-		<% if review.dish.gluten_free == true %>
-				<%= " | GF " %>
-		<% end %>
-	</h5>
-	<p><%= review.content %></p>
-	<p>
-		updated on <%= review.updated_at.strftime("%_m/%_d/%Y") %> 
-		by <a href="/<%= review.user.username %>"><%= review.user.username %></a>
-	</p>
+		</h5>
+		<p><%= review.content %></p>
+		<p>
+			updated on <%= review.updated_at.strftime("%_m/%_d/%Y") %> 
+			by <a href="/<%= review.user.username %>"><%= review.user.username %></a>
+		</p>
 
-
+	</div>
 <% end %>

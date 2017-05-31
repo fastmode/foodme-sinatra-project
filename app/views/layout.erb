@@ -6,23 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<link href="/css/bootstrap.css" rel="stylesheet">
-	<style>
-		body {
-			padding: 20px;
-		}
+  <link href="/css/style.css" rel="stylesheet">
 
-    .navbar-default {
-      background-color: #fff;
-      border-color: #fff;
-      padding-bottom: 85px;
-    }
-
-    .navbar-default .navbar-nav > li > a {
-    color: #000;
-    }
-
-	</style>
-    <title>FoodMe!</title>
+  <title>FoodMe!</title>
   </head>
 
   <body>
@@ -64,14 +50,17 @@
       </div><!-- /.container-fluid -->
     </nav>
     
-    <% if logged_in? %>
-      <h1> Hello, <%= current_user.username %></h1>
-    <% else %>
-      <h1>Welcome to FoodMe!</h1>
-      <h4>-a food review site</h4>
-    <% end %>
-    
-    <%= yield %>
+    <div class="container">
+      <% if logged_in? %>
+        <h1> Hello, <%= current_user.username %></h1>
+      <% else %>
+        <h1>Welcome to FoodMe!</h1>
+        <h4>-a food review site</h4>
+      <% end %>
+      
+      
+      <%= yield %>
+    </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

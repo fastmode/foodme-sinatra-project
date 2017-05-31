@@ -1,0 +1,23 @@
+/*/////// MEDIA ////////*/
+
+img, video, audio, iframe, table, form {
+  width: 100%; /* IE */
+  max-width: 100%; /* FF, Safari, Chrome */
+}
+
+
+/*/////// LAYOUT STYLES ////////*/
+
+body {
+	padding: 20px;
+}
+
+.navbar-default {
+background-color: #fff;
+border-color: #fff;
+padding-bottom: 85px;
+}
+
+.navbar-default .navbar-nav > li > a {
+color: #000;
+}
