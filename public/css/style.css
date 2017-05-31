@@ -21,3 +21,8 @@ padding-bottom: 85px;
 .navbar-default .navbar-nav > li > a {
 color: #000;
 }
+
+.navbar-collapse {
+    padding-top: 65px;
+    border: none;
+ }
