@@ -13,13 +13,13 @@ body {
 }
 
 .navbar-default {
-background-color: #fff;
-border-color: #fff;
-padding-bottom: 85px;
+	background-color: #fff;
+	border-color: #fff;
+	padding-bottom: 45px;
 }
 
 .navbar-default .navbar-nav > li > a {
-color: #000;
+	color: #000;
 }
 
 .navbar-collapse {
