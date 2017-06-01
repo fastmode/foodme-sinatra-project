@@ -1,15 +1,20 @@
-<% if flash.has?(:message) %>
-  <br><%= flash[:message] %><br><br>
-<% end %>
-
-
 <h3>Please create an account:</h3>
 
 <div class="form-group">
 	<form action="/signup" method="POST">
-	  <input type="text" name="username" class="form-control" placeholder="Username:"><br>
-	  <input type="email" name="email" class="form-control" placeholder="Email:"><br>
-	  <input type="password" name="password" class="form-control" placeholder="Password:"><br>
-	  <input class="btn btn-primary btn-sm" type="submit" value="Log In">
+
+		<% if flash[:message] && flash[:message][:username] %>
+		<h4 style="color: red;"><%= flash[:message][:username] %></h4>
+		<% end %>
+		<input type="text" name="username" class="form-control" placeholder="Username:"><br>
+		<% if flash[:message] && flash[:message][:email] %>
+			<h4 style="color: red;"><%= flash[:message][:email] %></h4>
+		<% end %>
+		<input type="email" name="email" class="form-control" placeholder="Email:" value="<%= @user.email %>"><br>
+		<% if flash[:message] && flash[:message][:password] %>
+			<h4 style="color: red;"><%= flash[:message][:password] %></h4>
+		<% end %>
+		<input type="password" name="password" class="form-control" placeholder="Password:"><br>
+		<input class="btn btn-primary btn-sm" type="submit" value="Log In">
 	</form>
 </div>

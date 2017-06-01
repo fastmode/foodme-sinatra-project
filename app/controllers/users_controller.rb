@@ -22,20 +22,35 @@ class UsersController < ApplicationController
   	if logged_in?
   		redirect to "/reviews"
   	else
+      @user = User.new
   		erb :'users/signup'
   	end
   end
 
   post '/signup' do
-  	if params[:username] == "" || params[:email] == "" || params[:password] == ""
-  		flash[:message] = "* Please fill out every field."
-      redirect to '/signup'
-    else
-    	user = User.new(:username => params[:username], :email => params[:email], :password => params[:password])
-    	user.save
-    	session[:user_id] = user.id
+    @user = User.new(:username => params[:username], :email => params[:email], :password => params[:password])
+    errors = {}
+  	if params[:username] == "" 
+      errors[:username] = "* Username must be filled in."
+    elsif User.find_by(username: params[:username])
+      errors[:username] = "* Username is not available!"
+    end
+    if params[:email] == "" 
+      errors[:email] = "* Email must be filled in."
+    elsif User.find_by(email: params[:email])
+      errors[:email] = "* Email is not available!"
+    end
+    if params[:password] == ""
+      errors[:password] = "* Password must be filled."
+    end
+    if errors.empty?
+    	@user.save
+    	session[:user_id] = @user.id
     	flash[:message] = "Your account was successfully created! Woot!"
   		redirect to "/reviews"
+    else 
+      flash[:message] = errors
+      erb :'users/signup'
   	end
   end
 

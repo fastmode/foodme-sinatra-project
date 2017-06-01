@@ -3,9 +3,8 @@ class User < ActiveRecord::Base
   has_many :dishes, through: :reviews
   has_secure_password
 
-  validates :username, presence: true
-  validates :email, presence: true
-  validates :password, presence: true
+  validates :username, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: true
 
   def slug
     username.downcase.gsub(" ","-")
